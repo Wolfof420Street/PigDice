@@ -6,31 +6,31 @@ var firstPlayer= ""
     finalScore=0
     diceSide=""
 
-function PlayerDetails(name, score, totalScore) {
+function PlayerDetails(name) {
     this.playerNames = name;
-    this.playerMarks = score;
-    this.totalScores = totalScore;
+    this.playerMarks = initialScore;
+    this.totalScores = finalScore;
 }
 // generating a random dice number //
 function dice() {
-  diceRoll= Math.floor((Math.random() * 6) + 1);
-  return diceRoll
+  initialScore= Math.floor((Math.random() * 6) + 1);
+  return initialScore
 }
 //function to check if the user has rolled one//
 
-PlayerDetails.prototype.RegisteringPlayers = function (NextPlayer) {
-  if (NextPlayer===1) {
+PlayerDetails.prototype.oneRoll = function () {
+  if (initialScore===1) {
     this.playerMarks=0
   }
-  else if (NextPlayer !==1) {
-    this.playerMarks= this.playerMarks + NextPlayer
+  else if (initialScore !==1) {
+    this.playerMarks= this.playerMarks + initial score
   }
   return this.playerMarks
 }
 
 //calculating the total score//
-PlayerDetails.prototype.Total = function (total) {
-    return this.totalScores = this.totalScores + total;
+PlayerDetails.prototype.Total = function () {
+    return this.totalScores = this.totalScores + finalScore;
 }
 
 // checking for the winner //
@@ -61,24 +61,19 @@ function clearValues = function () {
 
 //User Interface//
 $(document).ready(function() {
-$(".console").hide();
+$("#play-game").hide();
 $("button#submit").click(function(event){
-player1 = new Player(true);
-player2 =  new Player(false);
-$(".console").show();
 
-var playerOne = $(".firstOne").val();
-$("#playerOne").text(playerOne);
+  var firstPlayer = $(".firstOne").val();
+  $("#playerOne").text(playerNames.firstPlayer);
 
-var playerTwo = $(".secondOne").val();
-$("#playerTwo").text(playerTwo);
-
-firstPlayer.playerNames=playerOne;
-secondPlayer.playerNames=playerTwo;
-
+  var secondPlayer = $(".secondOne").val();
+  $("#playerTwo").text(playerNames.secondPlayer);
 });
+  $("play-game").show()
+
 $("button#new-game").click(function(event){
-  $(".console").hide();
+  $("#play-game").hide();
   clearValues();
   firstPlayer.newGame();
   secondPlayer.newGame();
@@ -88,35 +83,32 @@ $("button#new-game").click(function(event){
   $("#dice-roll-one").empty();
   $("#initialScore-one").empty();
   $("#cumulativeScore-one").empty();
-
-  $(".menu").show();
 });
-
 $("button#playerOneroll").click(function(event){
-  firstPlayer.initialScore = dice();
-  $("#dice-roll").text(firstPlayer.initialScore);
-  firstPlayer.RegisteringPlayers();
-  $("#initialScore").text(firstPlayer.initialScore);
+  initialScore = dice();
+  $("#dice-roll").text(initialScore);
+  initialScore.oneRoll();
+  $("#initialScore").text(initialScore);
 });
 
 $("button#playerTwoRoll").click(function(event){
-  secondPlayer.initialScore = dice();
-  $("#dice-roll-one").text(player2.roll);
-  secondPlayer.RegisteringPlayers();
+  initialScore = dice();
+  $("#dice-roll-one").text(initialScore);
+  secondPlayer.oneRoll();
 });
-  $("#cumulativeScore-one").text(player2.initialScore);
+  $("#cumulativeScore-one").text(initialScore);
 
 $("button#playerOnehold").click(function(event){
-  firstPlayer.Total();
-  $("#cumulativeScore").text(firstPlayer.totalscore);
+  finalScore.Total();
+  $("#cumulativeScore").text(finalScore);
   $("#dice-roll").empty();
   $("#initialScore").empty();
-  firstPlayer.checkWinner();
+  finalScore.checkWinner();
 });
 
 $("button#playerTwohold").click(function(event){
-  secondPlayer.Total();
-  $("#cumulativeScore-one").text(secondPlayer.totalscore);
+  finalScore.Total();
+  $("#cumulativeScore-one").text(finalScore);
   $("#initialScore-one").empty();
   $("#dice-roll-one").empty();
   player2.winnerCheck();
