@@ -2,45 +2,52 @@
 <html>
 <head>
   <title> Pig Dice </title>
-  <h1><strong> Welcome to pig dice </strong></h1>
-  <h1>the winner becomes the role model</h1>
   <link href="CSS/bootstrap.css" rel="stylesheet" type="text/css">
   <link href="CSS/styles.css" rel="stylesheet" type="text/css">
 <script   src="https://code.jquery.com/jquery-3.3.1.min.js"   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="   crossorigin="anonymous"></script>
   <script src="Js/scripts.js"></script>
 </head>
 <body>
-  <div class="container">
+  <div class="menu container">
+      <div class="jumbotron">
+        <h1>Welcome to Pig Dice!</h1>
+        <h2> whoever wins is the roll model</h2>
+          <form id="playerOne">
+            <div class="form-group">
+              <label for="firstOne">Player1:</label>
+              <input required class="firstOne" type="text">
+            </div>
+          </form>
+          <form id="playerTwo">
+            <div class="form-group">
+              <label for="secondOne">Player 2:</label>
+              <input required class="secondOne" type="text">
+            </div>
+          </form>
+          <button id="submit" class="btn btn-default"> Play Now! </button>
+      </div>
+    </div>
+  <div class="container" id="play-game">
     <div class="row">
       <div class="col-md-6">
-        <form class="playerDetails" action="index.html" method="post">
-          <div class="form-group">
-            <label for="Player1">Player 1</label>
-          <input type="text" name="player1" value="">
-          <label for="Player2"> Player2</label>
-          <input type="text" name="player2" value="">
-          <button onclick="rollDice()" type="submit" name="submit"> Register player names</button>
-        </form>
+        <button type="button" id="playerOneroll"> Roll</button>
+        <button type="button" id="playerOnehold"> Hold </button>
+        <h2> Dice Roll:  <span id ="dice-roll" </span> </h2>
+        <h2> Score : <span id="initialScore" </span> </h2>
+        <h2> Cumulative : <span id="cumulativeScore" </h2>
+      <div class="col-md-6">
+        <button type="button" name="roll" id="playerTwoRoll"> Roll </button>
+        <button type="button" name="hold" id="playerTwohold">Hold</button>
+        <h2> Dice Roll:  <span id="dice-roll-one" </span> </h2>
+        <h2> Score : <span id="initialScore-one" </span> </h2>
+        <h2> Cumulative : <span id="cumulativeScore-one" </span> </h2>
       </div>
       </div>
     </div>
+    <button id="new-game" type="button" name="clear">New Game</button>
   </div>
-  <div class="container"
-    <div class="row">
-      <div class="col-md-6">
-        <p> Player 1 </p>
-        <button type="button" name="roll"> Roll</button>
-        <button type="button" name="hold"> Hold </button>
-      <div class="col-md-6">
-        <p> Player 2 </p>
-        <button type="button" name="roll"> Roll </button>
-        <button type="button" name="hold">Hold</button>
-      </div>
-      </div>
-    </div>
-    <button type="button" name="clear">New Game</button>
-    <div class="score">
-      <p> SCore : <p>
-    </div>
+<div class="image" id="answer">
 </div>
-<a href="rules.html">click <span> here </span> to read the rules</a>
+<a href="rules.html"> click <span here </span> to read the rules</a>
+</body>
+</html>
